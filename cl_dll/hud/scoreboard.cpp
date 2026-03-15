@@ -225,11 +225,11 @@ int CHudScoreboard :: DrawScoreboard( float fTime )
 		strncpy( ServerName, gHUD.m_Teamplay ? "TEAMS" : "PLAYERS", 80 );
 
 	DrawUtils::DrawHudString( g_Columns[COL_NAME].start, ypos, g_Columns[COL_NAME].end, ServerName, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( g_Columns[COL_HP].start, ypos, g_Columns[COL_HP].end, g_Columns[COL_HP].name, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( g_Columns[COL_MONEY].start, ypos, g_Columns[COL_MONEY].end, g_Columns[COL_MONEY].name, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( g_Columns[COL_KILLS].start, ypos, g_Columns[COL_KILLS].end, g_Columns[COL_KILLS].name, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( g_Columns[COL_DEATHS].start, ypos, g_Columns[COL_DEATHS].end, g_Columns[COL_DEATHS].name, 255, 140, 0 );
-	DrawUtils::DrawHudStringReverse( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, g_Columns[COL_PING].name, 255, 140, 0 );
+	DrawUtils::DrawHudString( g_Columns[COL_HP].start, ypos, g_Columns[COL_HP].end, g_Columns[COL_HP].name, 255, 140, 0 );
+	DrawUtils::DrawHudString( g_Columns[COL_MONEY].start, ypos, g_Columns[COL_MONEY].end, g_Columns[COL_MONEY].name, 255, 140, 0 );
+	DrawUtils::DrawHudString( g_Columns[COL_KILLS].start, ypos, g_Columns[COL_KILLS].end, g_Columns[COL_KILLS].name, 255, 140, 0 );
+	DrawUtils::DrawHudString( g_Columns[COL_DEATHS].start, ypos, g_Columns[COL_DEATHS].end, g_Columns[COL_DEATHS].name, 255, 140, 0 );
+	DrawUtils::DrawHudString( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, g_Columns[COL_PING].name, 255, 140, 0 );
 
 	list_slot += 2;
 	ypos = ystart + (list_slot * ROW_GAP);
@@ -462,18 +462,18 @@ int CHudScoreboard :: DrawPlayers( float list_slot, int nameoffset, const char *
 			{
 				// draw bomb( if player have the bomb )
 				if( g_PlayerExtraInfo[best_player].dead )
-					DrawUtils::DrawHudStringReverse( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_DEAD" ), r, g, b );
+					DrawUtils::DrawHudString( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_DEAD" ), r, g, b );
 				else if( g_PlayerExtraInfo[best_player].has_c4 )
-					DrawUtils::DrawHudStringReverse( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_BOMB" ), r, g, b );
+					DrawUtils::DrawHudString( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_BOMB" ), r, g, b );
 				else if( g_PlayerExtraInfo[best_player].vip )
-					DrawUtils::DrawHudStringReverse( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_VIP" ),  r, g, b );
+					DrawUtils::DrawHudString( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_VIP" ),  r, g, b );
 				else if (g_PlayerExtraInfo[best_player].has_defuse_kit )
-					DrawUtils::DrawHudStringReverse( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_DEFUSE_KIT" ),  r, g, b );
+					DrawUtils::DrawHudString( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, Localize( "#Cstrike_DEFUSE_KIT" ),  r, g, b );
 			}
 		}
 		else
 		{
-			DrawUtils::DrawHudStringReverse( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, gEngfuncs.PlayerInfo_ValueForKey( best_player, "cscl_ver" ),  r, g, b );
+			DrawUtils::DrawHudString( g_Columns[COL_ATTRIB].start, ypos, g_Columns[COL_ATTRIB].end, gEngfuncs.PlayerInfo_ValueForKey( best_player, "cscl_ver" ),  r, g, b );
 		}
 
 		if ( g_PlayerExtraInfo[best_player].sb_health >= 0 && !g_PlayerExtraInfo[best_player].dead )
@@ -482,7 +482,7 @@ int CHudScoreboard :: DrawPlayers( float list_slot, int nameoffset, const char *
 			{
 				static char buf[64];
 				sprintf( buf, "%d", g_PlayerExtraInfo[best_player].sb_health );
-				DrawUtils::DrawHudStringReverse( g_Columns[COL_HP].start, ypos, g_Columns[COL_HP].end, buf, r, g, b );
+				DrawUtils::DrawHudString( g_Columns[COL_HP].start, ypos, g_Columns[COL_HP].end, buf, r, g, b );
 			}
 		}
 
@@ -492,7 +492,7 @@ int CHudScoreboard :: DrawPlayers( float list_slot, int nameoffset, const char *
 			{
 				static char buf[64];
 				sprintf( buf, "$%d", g_PlayerExtraInfo[best_player].sb_account );
-				DrawUtils::DrawHudStringReverse( g_Columns[COL_MONEY].start, ypos, g_Columns[COL_MONEY].end, buf, r, g, b );
+				DrawUtils::DrawHudString( g_Columns[COL_MONEY].start, ypos, g_Columns[COL_MONEY].end, buf, r, g, b );
 			}
 		}
 
@@ -511,13 +511,13 @@ int CHudScoreboard :: DrawPlayers( float list_slot, int nameoffset, const char *
 			&& ( value = gEngfuncs.PlayerInfo_ValueForKey( best_player, "*bot" ) )
 			&& atoi( value ) > 0 )
 		{
-			DrawUtils::DrawHudStringReverse( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, "BOT", r, g, b );
+			DrawUtils::DrawHudString( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, "BOT", r, g, b );
 		}
 		else
 		{
 			static char buf[64];
 			sprintf( buf, "%d", pl_info->ping );
-			DrawUtils::DrawHudStringReverse( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, buf, r, g, b );
+			DrawUtils::DrawHudString( g_Columns[COL_PING].start, ypos, g_Columns[COL_PING].end, buf, r, g, b );
 		}
 
 		pl_info->name = NULL;  // set the name to be NULL, so this client won't get drawn again
